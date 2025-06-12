@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // IMPORTANTE: Defina a data de início do relacionamento aqui!
     // Formato: Ano, Mês (0-11, então Julho é 6), Dia, Hora, Minuto, Segundo
     // Exemplo: 2023, 6 (Julho), 15, 10, 30, 0 para 15 de Julho de 2023 às 10:30:00
-    const startDate = new Date(2024, 11, 20, 0, 0, 0); // Exemplo: 25 de Dezembro de 2023, 00:00:00
+    const startDate = new Date(2023, 11, 25, 0, 0, 0); // Exemplo: 25 de Dezembro de 2023, 00:00:00
 
     // --- Elementos HTML ---
     const initialMessageSection = document.getElementById('initial-message-section');
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const secondsSpan = document.getElementById('seconds');
     const togetherSinceP = document.getElementById('together-since');
 
-    // Elemento da Mensagem Completa (para o efeito de digitação futuro)
+    // Elemento da Mensagem Completa (para o efeito de digitação futuro, se for implementado)
     const fullMessageText = document.getElementById('full-message-text');
 
     // --- Funções Auxiliares ---
@@ -105,13 +105,26 @@ document.addEventListener('DOMContentLoaded', function() {
         setInterval(updateCountdown, 1000); // Atualiza a cada segundo
     });
 
-    // --- Efeito de Corações Caindo (Será adicionado aqui no próximo passo) ---
+    // --- Efeito de Corações Caindo ---
     function createFallingHeart() {
         const heart = document.createElement('div');
         heart.classList.add('falling-heart');
-        heart.style.left = Math.random() * 100 + 'vw'; // Posição horizontal aleatória
-        heart.style.animationDuration = Math.random() * 2 + 3 + 's'; // Duração da animação entre 3 e 5 segundos
-        heart.style.opacity = Math.random() * 0.5 + 0.5; // Opacidade aleatória
+
+        // Posição horizontal aleatória (em % para melhor responsividade)
+        heart.style.left = Math.random() * 95 + 'vw'; // 95vw para evitar que cole nas bordas
+
+        // Duração da animação (entre 4 e 8 segundos para ser mais suave e lento)
+        heart.style.animationDuration = (Math.random() * 4 + 4) + 's';
+
+        // Atraso inicial para que não apareçam todos juntos no mesmo segundo
+        heart.style.animationDelay = (Math.random() * 2) + 's';
+
+        // Tamanho aleatório para variar um pouco (entre 0.8 e 1.2 do tamanho original)
+        const randomScale = Math.random() * 0.4 + 0.8;
+        heart.style.transform = `scale(${randomScale})`; // Aplica a escala inicial
+
+        // A opacidade inicial será controlada pelo keyframe 'fall'
+        // Não defina opacidade aqui, o keyframe faz o fade-in do 0 para 1
         document.body.appendChild(heart);
 
         // Remove o coração após a animação para não acumular elementos
@@ -121,7 +134,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Gerar corações continuamente
-    setInterval(createFallingHeart, 300); // Cria um coração a cada 300ms
+    // Criar menos corações para aliviar o processamento e evitar travamentos
+    // Aumentei o intervalo para 500ms. Se ainda travar, tente 700ms ou 1000ms.
+    setInterval(createFallingHeart, 500);
 
     // --- Configuração inicial ao carregar a página ---
     document.body.classList.add('initial-state'); // Adiciona a classe para centralizar a mensagem inicial
