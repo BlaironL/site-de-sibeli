@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // IMPORTANTE: Defina a data de início do relacionamento aqui!
     // Formato: Ano, Mês (0-11, então Julho é 6), Dia, Hora, Minuto, Segundo
     // Exemplo: 2023, 6 (Julho), 15, 10, 30, 0 para 15 de Julho de 2023 às 10:30:00
-    const startDate = new Date(2023, 11, 25, 0, 0, 0); // Exemplo: 25 de Dezembro de 2023, 00:00:00
+    const startDate = new Date(2024, 11, 20, 0, 0, 0); // Exemplo: 25 de Dezembro de 2023, 00:00:00
 
     // --- Elementos HTML ---
     const initialMessageSection = document.getElementById('initial-message-section');
