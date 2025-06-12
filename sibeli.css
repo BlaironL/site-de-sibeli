@@ -186,15 +186,18 @@ footer {
 /* Efeito de Corações Caindo */
 @keyframes fall {
     0% {
-        transform: translateY(-10vh) scale(0);
+        transform: translateY(-10vh) scale(0); /* Começa acima da tela, invisível e pequeno */
         opacity: 0;
     }
     10% {
-        opacity: 0.8;
-        transform: scale(1);
+        transform: translateY(0vh) scale(1); /* Desce um pouco, aparece e cresce */
+        opacity: 1; /* Opacidade total ao iniciar a queda visível */
+    }
+    90% { /* Perto do final da queda, mantém visibilidade */
+        opacity: 1;
     }
     100% {
-        transform: translateY(100vh) scale(1.2);
+        transform: translateY(110vh) scale(1.2); /* Termina abaixo da tela, ligeiramente maior e some */
         opacity: 0;
     }
 }
@@ -202,16 +205,21 @@ footer {
 .falling-heart {
     position: fixed;
     top: 0;
-    font-size: 1.5rem; /* Tamanho do coração */
-    color: var(--primary-color); /* Cor do coração */
+    font-size: 1.5rem; /* Tamanho base do coração. Será ajustado pela escala no JS. */
+    color: var(--primary-color);
     animation: fall linear infinite;
-    pointer-events: none; /* Garante que os corações não atrapalhem cliques */
-    z-index: 9999; /* Garante que fiquem por cima de tudo */
+    pointer-events: none;
+    z-index: 9999;
     text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+
+    /* Força aceleração de hardware (truque comum para suavizar) */
+    will-change: transform, opacity; /* Informa ao navegador que essas propriedades vão mudar */
+    backface-visibility: hidden; /* Outra otimização para aceleração de hardware */
+    perspective: 1000px; /* Ajuda a ativar a aceleração de hardware em alguns navegadores */
 }
 
 .falling-heart::before {
-    content: '❤️'; /* O emoji de coração */
+    content: '❤️';
 }
 
 
