@@ -1,0 +1,229 @@
+/* Importa uma fonte romântica do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Open+Sans:wght@300;400;700&display=swap');
+
+:root {
+    --primary-color: #ff6f61; /* Um tom de rosa avermelhado */
+    --secondary-color: #ffe0e0; /* Um rosa bem clarinho para o fundo */
+    --text-color: #333;
+    --card-bg: #fff;
+    --shadow-light: rgba(0, 0, 0, 0.1);
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    align-items: center; /* Centraliza o conteúdo horizontalmente */
+    justify-content: flex-start; /* Alinha o conteúdo ao topo, ou center para a mensagem inicial */
+}
+
+/* Ajuste para a mensagem inicial ficar centralizada verticalmente */
+body.initial-state {
+    justify-content: center;
+}
+
+header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 2rem 1rem;
+    text-align: center;
+    width: 100%;
+    box-shadow: 0 4px 8px var(--shadow-light);
+    margin-bottom: 2rem;
+}
+
+header h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3.5rem;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+main {
+    width: 90%;
+    max-width: 960px;
+    margin: 0 auto 2rem auto; /* Ajusta a margem inferior para dar espaço ao footer */
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.card {
+    background-color: var(--card-bg);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px var(--shadow-light);
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+h2 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+}
+
+/* Estilos para o botão de ação */
+.action-button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.action-button:hover {
+    background-color: #e05e54; /* Um tom ligeiramente mais escuro */
+    transform: translateY(-2px);
+}
+
+.action-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* Estilos do Cronômetro */
+#countdown {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* Permite que as unidades quebrem a linha em telas menores */
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.time-unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--secondary-color);
+    padding: 1rem 1.5rem;
+    border-radius: 10px;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+    min-width: 80px; /* Garante que as caixas não fiquem muito pequenas */
+}
+
+.time-unit span {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    line-height: 1; /* Remove espaço extra */
+}
+
+.time-unit p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--text-color);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+#together-since {
+    margin-top: 1.5rem;
+    font-style: italic;
+    color: #666;
+}
+
+/* Estilos da Galeria de Fotos */
+.gallery-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* 2 ou 3 colunas, responsivo */
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.gallery-container img {
+    width: 100%;
+    height: 250px; /* Altura fixa para as imagens */
+    object-fit: cover; /* Recorta a imagem para preencher o espaço sem distorcer */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px var(--shadow-light);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    cursor: pointer; /* Indica que a imagem é clicável, caso queira adicionar um lightbox futuramente */
+}
+
+.gallery-container img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+footer {
+    width: 100%;
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: auto; /* Empurra o footer para o final da página */
+    box-shadow: 0 -2px 8px var(--shadow-light);
+}
+
+/* Responsividade Básica */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2.8rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    .time-unit span {
+        font-size: 2.2rem;
+    }
+
+    .card {
+        padding: 1.5rem;
+    }
+
+    .gallery-container {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Mais colunas em telas menores */
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 2.2rem;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+    }
+
+    #countdown {
+        gap: 1rem;
+    }
+
+    .time-unit {
+        padding: 0.8rem 1rem;
+        min-width: 60px;
+    }
+
+    .time-unit span {
+        font-size: 1.8rem;
+    }
+
+    .time-unit p {
+        font-size: 0.7rem;
+    }
+
+    .gallery-container {
+        grid-template-columns: 1fr; /* Uma coluna em telas muito pequenas */
+    }
+}
